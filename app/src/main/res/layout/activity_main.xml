@@ -21,7 +21,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:isScaned="false"/>
+            app:scanedText="已验收"
+            app:tv_scaned_color="@color/colorPrimary"
+            app:tv_unscaned_color="@color/colorRed"
+            app:unScanedText="未验收"/>
     </LinearLayout>
 
 </LinearLayout>

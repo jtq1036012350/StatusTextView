@@ -13,6 +13,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myScanStateTextView = (MyScanStateTextView) findViewById(R.id.tv_mystate);
-        myScanStateTextView.setUnscaned();
+        myScanStateTextView.setTvEnable();
     }
 }

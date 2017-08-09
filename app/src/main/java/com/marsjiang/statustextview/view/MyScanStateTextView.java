@@ -74,12 +74,13 @@ public class MyScanStateTextView extends FrameLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         //根据设定的默认覆盖方式来latyout
-        if (!isScaned) {
-            tv_scaned.layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            tv_unscaned.layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        tv_unscaned.layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        tv_scaned.layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
+
+        if (isScaned) {
+            setTvEnable();
         } else {
-            tv_unscaned.layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            tv_scaned.layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            setTvDisable();
         }
         invalidate();
     }
@@ -92,23 +93,25 @@ public class MyScanStateTextView extends FrameLayout {
 
         tv_unscaned = new TextView(context);
         if (TextUtils.isEmpty(scanedText)) {
-            tv_unscaned.setText("已扫描");
+            tv_unscaned.setText("待扫描");
         } else {
             tv_unscaned.setText(scanedText);
         }
         tv_unscaned.setTextColor(tv_unscaned_color);
         tv_unscaned.setTextSize(tv_textSize);
         tv_unscaned.setGravity(Gravity.CENTER_VERTICAL);
+        tv_unscaned.setTextColor(tv_unscaned_color);
 
         tv_scaned = new TextView(context);
         if (TextUtils.isEmpty(unScanedText)) {
-            tv_scaned.setText("待扫描");
+            tv_scaned.setText("已扫描");
         } else {
             tv_scaned.setText(unScanedText);
         }
         tv_scaned.setTextColor(tv_scaned_color);
         tv_scaned.setTextSize(tv_textSize);
         tv_scaned.setGravity(Gravity.CENTER_VERTICAL);
+        tv_scaned.setTextColor(tv_scaned_color);
 
         tv_scaned.setPadding((int) padding_left, (int) padding_top, (int) padding_right, (int) padding_botttom);
         tv_unscaned.setPadding((int) padding_left, (int) padding_top, (int) padding_right, (int) padding_botttom);
@@ -126,8 +129,8 @@ public class MyScanStateTextView extends FrameLayout {
      */
     private void initProperty(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.StateTextView);
-        tv_scaned_color = ta.getColor(R.styleable.StateTextView_tv_scaned_color, Color.BLUE);
-        tv_unscaned_color = ta.getColor(R.styleable.StateTextView_tv_unscaned_color, Color.GRAY);
+        tv_scaned_color = ta.getColor(R.styleable.StateTextView_tv_scaned_color, Color.GRAY);
+        tv_unscaned_color = ta.getColor(R.styleable.StateTextView_tv_unscaned_color, Color.BLUE);
         tv_textSize = ta.getDimension(R.styleable.StateTextView_tv_textSize, 18f);
 
         padding_left = ta.getDimension(R.styleable.StateTextView_padding_left, 5f);
@@ -145,17 +148,19 @@ public class MyScanStateTextView extends FrameLayout {
     /**
      * 设定扫描状态
      */
-    public void setScaned() {
-        tv_unscaned.setVisibility(View.GONE);
+    public void setTvEnable() {
         tv_scaned.setVisibility(View.VISIBLE);
+        tv_unscaned.setVisibility(View.GONE);
+        isScaned = true;
     }
 
     /**
      * 设定未扫描状态
      */
-    public void setUnscaned() {
+    public void setTvDisable() {
         tv_unscaned.setVisibility(View.VISIBLE);
         tv_scaned.setVisibility(View.GONE);
+        isScaned = false;
     }
 
 }
