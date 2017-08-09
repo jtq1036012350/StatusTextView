@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StateTextView">
+        <!--一待扫描颜色-->
+        <attr name="tv_scaned_color" format="color"/>
+        <!--一已扫描颜色-->
+        <attr name="tv_unscaned_color" format="color"/>
+        <!--一文字大小-->
+        <attr name="tv_textSize" format="dimension"/>
+        <!--左间距-->
+        <attr name="padding_left" format="dimension"/>
+        <!--右间距-->
+        <attr name="padding_right" format="dimension"/>
+        <!--上间距-->
+        <attr name="padding_top" format="dimension"/>
+        <!--下间距-->
+        <attr name="padding_botttom" format="dimension"/>
+        <!--已扫描文字-->
+        <attr name="scanedText" format="string"/>
+        <!--未扫描文字-->
+        <attr name="unScanedText" format="string"/>
+        <!--显示扫描还是未扫描 true:扫描，false：未扫描-->
+        <attr name="isScaned" format="boolean"/>
+    </declare-styleable>
+</resources>
